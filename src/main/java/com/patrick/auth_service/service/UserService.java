@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -44,4 +45,20 @@ public class UserService {
                 user.getEmail()
         );
     }
+
+    public List<UserResponseDTO> searchUsers() {
+        return converteDados(repository.findAll());
+    }
+
+    private List<UserResponseDTO> converteDados(List<User> users) {
+        return users.stream()
+                .map(u -> new UserResponseDTO(
+                        u.getId(),
+                        u.getName(),
+                        u.getAge(),
+                        u.getPhone(),
+                        u.getEmail()))
+                .collect(Collectors.toList());
+    }
+
 }
