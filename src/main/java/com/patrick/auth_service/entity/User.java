@@ -1,5 +1,6 @@
 package com.patrick.auth_service.entity;
 
+import com.patrick.auth_service.dto.RegisterDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
@@ -37,6 +38,9 @@ public class User {
     @Column(unique = true)
     private String email;
 
+    @NotBlank
+    private String phone;
+
     @NotBlank(message = "password cannot be empty.")
     private String password;
 
@@ -46,5 +50,13 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserToken> userTokenList;
+
+    public User (RegisterDTO dto){
+        this.name = dto.name();
+        this.age = dto.age();
+        this.phone = dto.phone();
+        this.email = dto.email();
+        this.enabled = false;
+    }
 
 }
