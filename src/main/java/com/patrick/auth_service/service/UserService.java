@@ -7,7 +7,6 @@ import com.patrick.auth_service.repository.RepositoryUser;
 import com.patrick.auth_service.validation.ValidationRegisterUser;
 import com.patrick.auth_service.validation.ValidationUserRegister;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,10 @@ public class UserService {
     private RepositoryUser repository;
 
     @Autowired
-    private List<ValidationUserRegister> validationUserRegisters;
+    private List<ValidationRegisterUser> validationUserRegisters;
+
+//    @Autowired
+//    private List<ValidationRegisterUser> validationUserRegisters;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -39,7 +41,7 @@ public class UserService {
         user = repository.save(user);
         return new UserResponseDTO(
                 user.getId(),
-                user.getName(),
+                user.getFullName(),
                 user.getAge(),
                 user.getPhone(),
                 user.getEmail()
@@ -54,7 +56,7 @@ public class UserService {
         return users.stream()
                 .map(u -> new UserResponseDTO(
                         u.getId(),
-                        u.getName(),
+                        u.getFullName(),
                         u.getAge(),
                         u.getPhone(),
                         u.getEmail()))

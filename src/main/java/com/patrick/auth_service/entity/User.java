@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,9 +27,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @NotBlank(message = "name cannot be empty")
-    private String name;
-
+    @NotBlank(message = "First name is required")
+    private String firstName;
+    @NotBlank(message = "Last name is required")
+    private String lastName;
     @NotNull(message = "Age cannot be empty")
     @Min(value = 0, message = "Age must be positive")
     private Integer age;
@@ -46,17 +48,26 @@ public class User {
 
     private boolean enabled; // vai ser criado como Null, pode ser ativado com o token que vai enviado pelo email
 
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserToken> userTokenList;
 
+    @Transient
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+
     public User (RegisterDTO dto){
-        this.name = dto.name();
+        this.firstName = dto.firstName();
+        this.lastName = dto.lastName();
         this.age = dto.age();
         this.phone = dto.phone();
         this.email = dto.email();
         this.enabled = false;
     }
+
+
 
 }

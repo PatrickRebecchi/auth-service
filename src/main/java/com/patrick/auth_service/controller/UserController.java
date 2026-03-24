@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/auth")
 public class UserController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class UserController {
         return ResponseEntity.ok(service.searchUsers());
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<UserResponseDTO> register(@RequestBody @Valid RegisterDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(service.register(dto));

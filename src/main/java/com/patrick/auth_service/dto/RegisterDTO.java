@@ -4,8 +4,10 @@ import jakarta.validation.constraints.*;
 
 
 public record RegisterDTO(
-        @NotBlank(message = "name cannot be empty")
-        String name,
+        @NotBlank(message = "First name is required")
+        String firstName,
+        @NotBlank(message = "Last name is required")
+        String lastName,
         @NotNull @Min(value = 0, message = "age must be greater than or equal to 0")
         Integer age,
         @NotBlank(message = "phone cannot be empty")

@@ -4,7 +4,9 @@ import com.patrick.auth_service.dto.RegisterDTO;
 import com.patrick.auth_service.exception.UserException;
 import com.patrick.auth_service.repository.RepositoryUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ValidationRegisterUser implements ValidationUserRegister{
     @Autowired
     private RepositoryUser repository;
@@ -12,7 +14,7 @@ public class ValidationRegisterUser implements ValidationUserRegister{
     @Override
     public void validar(RegisterDTO dto){
         if (repository.existsByEmail(dto.email())){
-            throw  new UserException("Email exists");
+            throw  new UserException("Email is already in use");
         }
     }
 }
