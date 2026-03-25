@@ -2,14 +2,14 @@ package com.patrick.auth_service.validation;
 
 import com.patrick.auth_service.dto.RegisterDTO;
 import com.patrick.auth_service.exception.UserException;
-import com.patrick.auth_service.repository.RepositoryUser;
+import com.patrick.auth_service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ValidationRegisterUser implements ValidationUserRegister{
     @Autowired
-    private RepositoryUser repository;
+    private UserRepository repository;
 
     @Override
     public void validar(RegisterDTO dto){

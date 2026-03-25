@@ -25,6 +25,11 @@ public class UserController {
         return ResponseEntity.ok(service.searchUsers());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponseDTO> getUserById(@PathVariable Long id){
+        return ResponseEntity.ok(service.getUserById(id));
+    }
+
     @PostMapping("/register")
     public ResponseEntity<UserResponseDTO> register(@RequestBody @Valid RegisterDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED)
