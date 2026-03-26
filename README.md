@@ -106,6 +106,18 @@ spring.datasource.password=your_password
 ./mvnw spring-boot:run
 
 ---
+## 🐳 Running with Docker
+
+This project uses Docker to run a PostgreSQL database in an isolated environment.
+
+### Requirements
+- Docker installed
+
+### How to run
+
+docker-compose up -d
+
+---
 
 ## 🚧 Next steps
 
@@ -114,6 +126,12 @@ spring.datasource.password=your_password
 * Email confirmation with token
 * Global exception handling
 * Improve project structure
+
+---
+## 🤖 AI-assisted learning
+
+During the development of this project, I used AI tools as a support resource for learning and problem-solving.
+The focus was on understanding the concepts and building solutions independently, rather than copying code.
 
 ---
 
